@@ -1,0 +1,77 @@
+<html>
+  <head>
+    <title>js</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      .main {
+        width: 370px;
+        margin: auto;
+      }
+      input {
+        direction: rtl;
+        padding: 20px 20px 100px;
+        width: 330px;
+        margin: 30px auto;
+        display: block;
+        outline: none;
+        font-size: 20px;
+        color: #717171;
+        border-radius: 10px;
+        border: 1.5px solid #717171;
+      }
+      button {
+        padding: 20px;
+        border: none;
+        background-color: #ddd;
+        margin: auto;
+        display: block;
+        width: 330px;
+        border-radius: 10px;
+        color: #383838;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main">
+      <input type="text" id="one" placeholder="النص المراد تشفيره"/>
+      <button id="in">تشفير</button>
+      <input type="text" id="two" placeholder="النص المراد فك تشفيره"/>
+      <button id="out">فك التشفير</button>
+    </div>
+    <script>
+    // Start Encryption
+      let inp1 = document.querySelector("#one");
+      let btn1 = document.querySelector("#in");
+      
+      btn1.onclick = function () {
+       let value = inp1.value;
+       let counter = [];
+       for (let i = 0; i < value.length; i++) {
+         counter.push(value[i].charCodeAt()*2);
+       };
+       let divEle = document.createElement("div");
+       divEle.style.cssText = "width: 330px; min-height: 200px; background-color: #eee; margin: 40px auto; padding: 15px; color: #404040; font-size: 20px; border-radius: 10px; text-align: center; word-wrap: normal;overflow-y:auto;text-overflow:ellipsis";
+     divEle.innerHTML = counter;
+     document.body.appendChild(divEle);
+      }
+     // End Encryption
+     // Start Decryption
+     let inp2 = document.querySelector("#two");
+     let btn2 = document.querySelector("#out");
+     btn2.onclick = function () {
+       let re = /\w+/ig;
+       let array = inp2.value.match(re);
+       let newArray = array.map(function (e) {
+         return String.fromCharCode(+e/2);
+       })
+       let divEle = document.createElement("div");
+       divEle.style.cssText = "width: 330px; height: 200px; background-color: #eee; margin: 40px auto; padding: 15px; color: #404040; font-size: 20px; border-radius: 10px; text-align: center; text-overflow:ellipsis";
+        divEle.innerHTML = newArray.join("");
+        document.body.appendChild(divEle);
+     }
+     // End Decryption
+    </script>
+  </body>
+</html>
